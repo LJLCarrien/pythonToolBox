@@ -32,6 +32,8 @@ def delFold(foldPath,delFoldState):
     删除该文件夹里的所有文件
     delFoldState: 0:删除子文件，保留所有文件夹 1：删除子文件和子文件夹 2：删除子文件、子文件夹和自身目录
     """
+    if not os.path.exists(foldPath):
+        return True
     for foldabsPath, childFolds, childFiles in os.walk(foldPath):
         for fileName in childFiles:
             print(foldabsPath,fileName)
