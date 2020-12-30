@@ -1,6 +1,22 @@
 import os
 import shutil
 
+import requests
+
+def requestByUrl(fileAbsPath, url, isReplace=True):
+    """
+    通过url，请求文件
+    """
+    r = requests.get(url, stream=True)
+    if not isReplace:
+        if os.path.exists(fileAbsPath):
+            print("已存在，跳过下载 %s " % fileAbsPath)
+            return
+    with open(fileAbsPath, 'wb') as fd:
+        for chunk in r.iter_content():
+            fd.write(chunk)
+        print("完成 %s " % fileAbsPath)
+
 # 创建文件 isReplace 同名覆盖
 def createFile(filePath, fileFullName, content,isReplace=True):
     full_path = '%s/%s' % (filePath, fileFullName)
