@@ -1,4 +1,5 @@
 # 环境 pythotn 3.8.5
+import os
 
 # 7z x {fileName} -o{outputDirectory}
 # x 表示解压一个文件

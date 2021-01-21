@@ -3,6 +3,10 @@ import shutil
 
 import requests
 
+
+def isfileExist(filePath):
+    return os.path.exists(filePath)
+    
 def requestByUrl(fileAbsPath, url, isReplace=True):
     """
     通过url，请求文件

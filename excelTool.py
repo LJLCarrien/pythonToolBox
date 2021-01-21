@@ -28,3 +28,16 @@ def readExcel(excelPath, sheetName):
                 if col == (num_cols-1):
                     excelInfoArr.append(dataItemInfo)
     return excelInfoArr
+
+
+def writeExcel(excelSavePath, sheetName, lineIndex, listIndex, value, style=None):
+    if style == None:
+        style = xlwt.XFStyle()
+        font = xlwt.Font()
+        font.name = '宋体'
+        style.font = font
+
+    workbook = xlwt.Workbook()  # 新建一个工作簿
+    sheet = workbook.add_sheet(sheetName)  # 在工作簿中新建一个表格
+    sheet.write(lineIndex, listIndex, value, style)  # 像表格中写入数据（对应的行和列）
+    workbook.save(excelSavePath)  # 保存工作簿
